@@ -1,8 +1,7 @@
-const images = import.meta.glob('./images/*.png', { eager: true });
+const images = require.context('./images', false, /\.png$/);
 
 function getImage(path) {
-  const mod = images[`./images/${path}`];
-  return mod && (mod.default || mod);
+  return images('./' + path);
 }
 
 /* eslint-disable */
